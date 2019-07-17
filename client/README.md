@@ -1,0 +1,1 @@
+This directory contains the code for the frontend, developed using React + Redux.
