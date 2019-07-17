@@ -6,7 +6,7 @@ import RadioField from "../../components/fields/radio-field";
 
 const TradingForm = props => {
   return (
-    <form>
+    <form onSubmit={(e)=> {e.preventDefault(); props.actions.handleOrderSubmit(props.tradingForm)}}>
       <SelectField
         data={props.tickers}
         label="SFSX"
@@ -28,11 +28,13 @@ const TradingForm = props => {
         label="Shares"
         type="number"
         onChange={e => props.actions.handleSharesChange(e.target.value)}
-        value={props.tradingForm.shares}
       />
       <RadioField
         firstLabel="Buy"
         secondLabel="Sell"
+        firstValue="buy"
+        secondValue="sell"
+        value={props.tradingForm.order}
         onChange={e => props.actions.handleOrderTypeChange(e.target.value)}
       />
 
@@ -41,7 +43,7 @@ const TradingForm = props => {
         <div className="field-body">
           <div className="field">
             <div className="control">
-              <button className="button is-primary" type="submit" onClick={(e)=>props.actions.handleOrderSubmit(props.tradingForm)}>Add order</button>
+              <button className="button is-primary" type="submit" >Add order</button>
             </div>
           </div>
         </div>

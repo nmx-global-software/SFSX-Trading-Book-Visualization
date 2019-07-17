@@ -34,6 +34,8 @@ export const handleTickerChange = dispatch => value => {
   
   export const handleOrderSubmit = dispatch => order => {
     dispatch({ type: LOCK_FORM });
+    alert("erererer")
+    console.log(order);
   };
 
   const initState = {
@@ -41,7 +43,7 @@ export const handleTickerChange = dispatch => value => {
     trader: "",
     price: null,
     shares: null,
-    order: "",
+    order: "buy",
     isLocked: false
   };
 
