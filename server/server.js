@@ -5,6 +5,7 @@ const { PORT = 3000 } = process.env
 
 const app = express()
 app.use(bodyParser.json())
+app.use('/book', require('./routers/book'))
 
 app.get('/', (req, res) => res.send("SFSX server is up!"))
 
