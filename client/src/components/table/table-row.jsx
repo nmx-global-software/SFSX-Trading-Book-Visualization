@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const TableRow = ({ data, resolvers }) => {
     return data && resolvers ? (
@@ -7,5 +8,12 @@ const TableRow = ({ data, resolvers }) => {
         </tr>
     ) : null
 }
+
+
+TableRow.propTypes = {
+    data: PropTypes.object,
+    resolvers: PropTypes.array
+}
+
 
 export default TableRow

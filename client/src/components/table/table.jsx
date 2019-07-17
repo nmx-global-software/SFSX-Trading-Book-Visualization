@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Row from './table-row'
 
@@ -9,6 +10,12 @@ const Table = ({ headers, data, resolvers }) => {
             <tbody>{data.map((row, i) => <Row key={i} data={row} resolvers={resolvers}></Row>)}</tbody>
         </table>
     ) : null
+}
+
+Table.propTypes = {
+    headers: PropTypes.array,
+    data: PropTypes.array,
+    resolvers: PropTypes.array
 }
 
 export default Table
