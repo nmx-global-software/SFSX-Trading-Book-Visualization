@@ -1,8 +1,10 @@
 /**
  * FYI: this is a redux duck https://github.com/erikras/ducks-modular-redux
  */
-import { duckifyActionType } from "../../utils/action-utils";
+import axios from 'axios'
 
+import { duckifyActionType } from "../../utils/action-utils";
+import { order } from '../../constants/endpoints'
 
 const HANDLE_TICKER_CHANGE = duckifyActionType("trading-form", "HANDLE_TICKER_CHANGE");
 const HANDLE_TRADER_CHANGE = duckifyActionType("trading-form", "HANDLE_TRADER_CHANGE");
@@ -32,9 +34,14 @@ export const handleTickerChange = dispatch => value => {
     dispatch({ type: HANDLE_ORDER_TYPE_CHANGE, value });
   };
   
-  export const handleOrderSubmit = dispatch => order => {
+  export const handleOrderSubmit = dispatch => data => {
     dispatch({ type: LOCK_FORM });
-    console.log(order);
+    
+    return axios.post(order, data)
+      .then(response=> {
+        console.log(response);
+        dispatch({ type: UNLOCK_FORM })
+      })
   };
 
   const initState = {
