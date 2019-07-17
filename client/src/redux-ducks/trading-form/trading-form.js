@@ -1,8 +1,10 @@
 /**
  * FYI: this is a redux duck https://github.com/erikras/ducks-modular-redux
  */
-import { duckifyActionType } from "../../utils/action-utils";
+import axios from 'axios'
 
+import { duckifyActionType } from "../../utils/action-utils";
+import { order } from '../../constants/endpoints'
 
 const HANDLE_TICKER_CHANGE = duckifyActionType("trading-form", "HANDLE_TICKER_CHANGE");
 const HANDLE_TRADER_CHANGE = duckifyActionType("trading-form", "HANDLE_TRADER_CHANGE");
@@ -11,6 +13,7 @@ const HANDLE_SHARES_CHANGE = duckifyActionType("trading-form", "HANDLE_SHARES_CH
 const HANDLE_ORDER_TYPE_CHANGE = duckifyActionType("trading-form", "HANDLE_ORDER_TYPE_CHANGE");
 const LOCK_FORM = duckifyActionType("trading-form", "LOCK-FORM");
 const UNLOCK_FORM = duckifyActionType("trading-form", "UNLOCK_FORM");
+const FORM_SUCCESS = duckifyActionType("trading-form", "FORM_SUCCESS");
 
 export const handleTickerChange = dispatch => value => {
     dispatch({ type: HANDLE_TICKER_CHANGE, value });
@@ -31,18 +34,29 @@ export const handleTickerChange = dispatch => value => {
   export const handleOrderTypeChange = dispatch => value => {
     dispatch({ type: HANDLE_ORDER_TYPE_CHANGE, value });
   };
+
   
-  export const handleOrderSubmit = dispatch => order => {
+  export const handleOrderSubmit = dispatch => data => {
     dispatch({ type: LOCK_FORM });
-    console.log(order);
+    delete data.isLocked;
+    return axios.post(order, data)
+      .then(response=> {
+        console.log(response);
+        dispatch({ type: UNLOCK_FORM });
+        dispatch({type:FORM_SUCCESS})
+      })
+      .catch(e=>{
+        console.log(e);
+        dispatch({ type: UNLOCK_FORM })
+      })
   };
 
   const initState = {
     ticker: "ZGRO",
     trader: "",
     price: null,
-    shares: null,
-    order: "buy",
+    numberOfShares: null,
+    type: "buy",
     isLocked: false
   };
 
@@ -66,12 +80,12 @@ export const handleTickerChange = dispatch => value => {
       case HANDLE_SHARES_CHANGE:
         return {
           ...state,
-          shares: action.value
+          numberOfShares: action.value
         };
       case HANDLE_ORDER_TYPE_CHANGE:
         return {
           ...state,
-          order: action.value
+          type: action.value
         };
       case LOCK_FORM:
         return {
@@ -79,6 +93,11 @@ export const handleTickerChange = dispatch => value => {
           isLocked: true
         };
       case UNLOCK_FORM:
+        return {
+          ...state,
+          isLocked:false
+        };
+        case FORM_SUCCESS:
         return {
           ...state,
           ...initState
