@@ -5,6 +5,7 @@ import SelectField from "../../components/fields/select-field";
 import RadioField from "../../components/fields/radio-field";
 
 const TradingForm = props => {
+ 
   return (
     <form onSubmit={(e)=> {e.preventDefault(); props.actions.handleOrderSubmit(props.tradingForm)}}>
       <SelectField
@@ -18,7 +19,7 @@ const TradingForm = props => {
         disabled={props.tradingForm.isLocked}
         label="Trader"
         onChange={e => props.actions.handleTraderChange(e.target.value)}
-        value={props.trader}
+        value={props.tradingForm.trader}
       />
       <TextField
         disabled={props.tradingForm.isLocked}
@@ -31,6 +32,7 @@ const TradingForm = props => {
         disabled={props.tradingForm.isLocked}
         label="Shares"
         type="number"
+        value={props.tradingForm.numberOfShares}
         onChange={e => props.actions.handleSharesChange(e.target.value)}
       />
       <RadioField
@@ -39,7 +41,7 @@ const TradingForm = props => {
         secondLabel="Sell"
         firstValue="buy"
         secondValue="sell"
-        value={props.tradingForm.order}
+        value={props.tradingForm.type}
         onChange={e => props.actions.handleOrderTypeChange(e.target.value)}
       />
 
