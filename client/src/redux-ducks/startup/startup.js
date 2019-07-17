@@ -1,8 +1,7 @@
-import { duckifyActionType } from "../../utils/action-utils";
-
 /**
  * FYI: this is a redux duck https://github.com/erikras/ducks-modular-redux
  */
+import { duckifyActionType } from "../../utils/action-utils";
 
 const LOAD_STARTUP_DATA = duckifyActionType("startup", "LOAD_STARTUP_DATA");
 
