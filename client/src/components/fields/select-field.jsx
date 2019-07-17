@@ -13,8 +13,8 @@ const SelectField = props => {
           <div className="control">
             <div className="select">
               <select value={value} onChange={onChange} required>
-                {data.map(d=>(
-                  <option name={d.value}>{d.value}</option>
+                {data.map((d, i)=>(
+                  <option key={i} name={d.value}>{d.value}</option>
                 ))}
               </select>
             </div>
