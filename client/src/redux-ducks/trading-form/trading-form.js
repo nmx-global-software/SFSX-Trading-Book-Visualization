@@ -18,24 +18,24 @@ const FORM_SUCCESS = duckifyActionType("trading-form", "FORM_SUCCESS");
 export const handleTickerChange = dispatch => value => {
     dispatch({ type: HANDLE_TICKER_CHANGE, value });
   };
-  
+
   export const handleTraderChange = dispatch => value => {
     dispatch({ type: HANDLE_TRADER_CHANGE, value });
   };
-  
+
   export const handlePriceChange = dispatch => value => {
     dispatch({ type: HANDLE_PRICE_CHANGE, value });
   };
-  
+
   export const handleSharesChange = dispatch => value => {
     dispatch({ type: HANDLE_SHARES_CHANGE, value });
   };
-  
+
   export const handleOrderTypeChange = dispatch => value => {
     dispatch({ type: HANDLE_ORDER_TYPE_CHANGE, value });
   };
 
-  
+
   export const handleOrderSubmit = dispatch => data => {
     dispatch({ type: LOCK_FORM });
     delete data.isLocked;
@@ -54,8 +54,8 @@ export const handleTickerChange = dispatch => value => {
   const initState = {
     ticker: "ZGRO",
     trader: "",
-    price: null,
-    numberOfShares: null,
+    price: "",
+    numberOfShares: "",
     type: "buy",
     isLocked: false
   };

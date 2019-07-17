@@ -36,12 +36,13 @@ const order = ({ ticker, type, price, numberOfShares, trader }) => {
                         logEntry.numberOfShares = difference
                         o.numberOfShares -= difference
                         difference = 0
-                        executionHistory.push(logEntry)
+                        if (logEntry.numberOfShares)  executionHistory.push(logEntry)
+
                     } else {
                         logEntry.numberOfShares = o.numberOfShares
                         remove++
                         difference -= o.numberOfShares
-                        executionHistory.push(logEntry)
+                        if (logEntry.numberOfShares)  executionHistory.push(logEntry)
                     }
                 })
                 priceInfo.orders.splice(0, remove)
@@ -58,7 +59,7 @@ const order = ({ ticker, type, price, numberOfShares, trader }) => {
                 }
             }
 
-            resolve(book)
+            resolve({ book, executionHistory })
         })
 
 
