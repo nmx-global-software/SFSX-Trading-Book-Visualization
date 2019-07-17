@@ -34,12 +34,11 @@ export const handleTickerChange = dispatch => value => {
   
   export const handleOrderSubmit = dispatch => order => {
     dispatch({ type: LOCK_FORM });
-    alert("erererer")
     console.log(order);
   };
 
   const initState = {
-    ticker: "",
+    ticker: "ZGRO",
     trader: "",
     price: null,
     shares: null,

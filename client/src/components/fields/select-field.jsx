@@ -1,7 +1,7 @@
 import React from "react";
 
 const SelectField = props => {
-  const { label, onChange, value, data } = props;
+  const { label, onChange, value, data, disabled } = props;
 
   return (
     <div className="field is-horizontal">
@@ -12,7 +12,7 @@ const SelectField = props => {
         <div className="field is-narrow">
           <div className="control">
             <div className="select">
-              <select value={value} onChange={onChange} required>
+              <select value={value} onChange={onChange} required disabled={disabled}>
                 {data.map((d, i)=>(
                   <option key={i} name={d.value}>{d.value}</option>
                 ))}

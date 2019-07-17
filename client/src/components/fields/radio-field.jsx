@@ -1,7 +1,7 @@
 import React from "react";
 
 const RadioField = props => {
-  const { firstLabel, secondLabel, onChange, value, firstValue, secondValue } = props;
+  const { firstLabel, secondLabel, onChange, value, firstValue, secondValue, disabled } = props;
 
   return (
     <div className="field is-horizontal">
@@ -12,11 +12,11 @@ const RadioField = props => {
         <div className="field is-narrow">
           <div className="control">
             <label className="radio">
-              <input type="radio" name="orderType" value="buy" onChange={onChange} checked={value===firstValue}/>
+              <input type="radio" name="orderType" value="buy" onChange={onChange} checked={value===firstValue} disabled={disabled}/>
               {firstLabel}
             </label>
             <label className="radio">
-              <input type="radio" name="orderType" value="sell" onChange={onChange} checked={value===secondValue}/>
+              <input type="radio" name="orderType" value="sell" onChange={onChange} checked={value===secondValue} disabled={disabled}/>
               {secondLabel}
             </label>
           </div>

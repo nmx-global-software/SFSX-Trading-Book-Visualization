@@ -1,7 +1,7 @@
 import React from "react";
 
 const TextField = props => {
-  const { label, onChange, value, type } = props;
+  const { label, onChange, value, type, disabled } = props;
 
   return (
     <div className="field is-horizontal">
@@ -18,6 +18,7 @@ const TextField = props => {
               value={value}
               onChange={onChange}
               required
+              disabled={disabled}
             />
           </div>
         </div>
