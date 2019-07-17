@@ -16,7 +16,7 @@ describe('services/book', () => {
         let revert
 
         beforeEach(() => {
-            revert = bookService.__set__({ book: { GOOG: {} } })
+            revert = bookService.__set__({ book: { GOOG: {} }, executionHistory: [] })
         })
 
         afterEach(() => {
@@ -29,27 +29,32 @@ describe('services/book', () => {
         })
 
         it('adds an order to the book if it cannot be executed', async () => {
-            const book = await order({ ticker: 'GOOG', price: 100, numberOfShares: 200, trader: 'EH', type: 'buy' })
+            const { book, executionHistory } = await order({ ticker: 'GOOG', price: 100, numberOfShares: 200, trader: 'EH', type: 'buy' })
             expect(book.GOOG[100]).not.toBeNull()
             expect(book.GOOG['100'].type).toBe('buy')
             expect(book.GOOG['100'].orders.length).toBe(1)
             expect(book.GOOG['100'].orders[0].numberOfShares).toBe(200)
+            expect(executionHistory.length).toBe(0)
         })
 
         it('updates the resting stock after an execution', async () => {
             await order({ ticker: 'GOOG', price: 100, numberOfShares: 200, trader: 'EH', type: 'buy' })
-            const book = await order({ ticker: 'GOOG', price: 100, numberOfShares: 150, trader: 'NW', type: 'sell' })
+            const { book, executionHistory } = await order({ ticker: 'GOOG', price: 100, numberOfShares: 150, trader: 'NW', type: 'sell' })
             expect(book.GOOG[100]).not.toBeNull()
             expect(book.GOOG['100'].type).toBe('buy')
             expect(book.GOOG['100'].orders[0].numberOfShares).toBe(50)
+            expect(executionHistory.length).toBe(1)
+
         })
 
         it('flips the resting stock after an execution', async () => {
             await order({ ticker: 'GOOG', price: 100, numberOfShares: 200, trader: 'EH', type: 'buy' })
-            const book = await order({ ticker: 'GOOG', price: 100, numberOfShares: 300, trader: 'NW', type: 'sell' })
+            const { book, executionHistory } = await order({ ticker: 'GOOG', price: 100, numberOfShares: 300, trader: 'NW', type: 'sell' })
             expect(book.GOOG[100]).not.toBeNull()
             expect(book.GOOG['100'].type).toBe('sell')
             expect(book.GOOG['100'].orders[0].numberOfShares).toBe(100)
+            expect(executionHistory.length).toBe(1)
+
         })
 
     });
