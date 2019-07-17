@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const { PORT = 3000 } = process.env
 
@@ -9,7 +10,9 @@ const errorHandler = (error, req, res, next) => {
     res.status(500).send({ error })
 }
 
+app.use(cors());
 app.use(bodyParser.json())
+
 app.use('/book', require('./routers/book'))
 
 app.use(errorHandler)
