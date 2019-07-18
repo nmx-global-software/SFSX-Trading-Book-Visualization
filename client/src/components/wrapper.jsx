@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 const didMountWrapper = WrappedComponent => {
   class Wrapper extends Component {
@@ -7,14 +7,14 @@ const didMountWrapper = WrappedComponent => {
       this.props.didMount(this.props);
     }
     render() {
-      return <WrappedComponent {...this.props} />
+      return <WrappedComponent {...this.props} />;
     }
   }
   return Wrapper;
-}
+};
 
 didMountWrapper.propTypes = {
-  willMount: PropTypes.func.isRequired
-}
+  didMount: PropTypes.func.isRequired
+};
 
 export default didMountWrapper;
