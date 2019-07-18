@@ -70,7 +70,8 @@ const order = ({ ticker, type, price, numberOfShares, trader }) => {
 
 module.exports = {
     order,
-    book
+    book,
+    executionHistory
 }
 
 
