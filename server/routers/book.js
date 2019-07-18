@@ -4,9 +4,9 @@ const router = express.Router()
 var expressJoi = require('express-joi-validator');
 var Joi = require('joi');
 
-const { book, order } = require('../services/book')
+const { book, order, executionHistory } = require('../services/book')
 
-router.get('/', (req, res) => res.json(book))
+router.get('/', (req, res) => res.json({ book, executionHistory }))
 
 
 const postSchema = {
