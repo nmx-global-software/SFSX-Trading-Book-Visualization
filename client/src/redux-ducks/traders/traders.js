@@ -7,10 +7,7 @@ import { duckifyActionType } from "../../utils/action-utils";
 import { order } from "../../constants/endpoints";
 
 const LOAD_TRADERS_DATA = duckifyActionType("traders", "LOAD_TRADERS_DATA");
-const HANDLE_CHART_ON_SELECTION = duckifyActionType(
-  "traders",
-  "HANDLE_CHART_ON_SELECTION"
-);
+const HANDLE_CHART_ON_SELECTION = duckifyActionType("traders", "HANDLE_CHART_ON_SELECTION");
 const UPDATE_TRADERS_DATA = duckifyActionType("traders", "UPDATE_TRADERS_DATA");
 
 export const loadTradersData = dispatch => value => {
@@ -45,6 +42,11 @@ export default function reducer(state = {}, action = {}) {
         ...state,
         ...action.value
       };
+    case HANDLE_CHART_ON_SELECTION:
+        return {
+          ...state,
+          selectedPrice:action.value
+        };
     default:
       return state;
   }

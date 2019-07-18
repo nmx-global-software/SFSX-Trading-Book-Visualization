@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import TradingFormContainer from "../../containers/trading-form-container";
 import HistoryContainer from "../../containers/history-container.js";
 import ColumnChartContainer from "../../containers/chart-container";
+import DrillDownContainer from '../../containers/drill-down-container'
 
 import wrapper from "../../components/wrapper";
 
@@ -29,11 +30,9 @@ const Home = props => {
             </div>
           </div>
           <div className="tile is-parent">
-            <article className="tile is-child notification is-danger">
-              <p className="title">Wide tile</p>
-              <p className="subtitle">Aligned with the right tile</p>
-              <div className="content" />
-            </article>
+            <div className="tile is-child">
+              <DrillDownContainer />
+            </div>
           </div>
         </div>
         <div className="tile is-parent">
