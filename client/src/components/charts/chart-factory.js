@@ -18,7 +18,15 @@ export const createColumnChartConfig = ({ title, buy, sell, actions }) => {
       },
       xAxis: {
         minPadding: 0.05,
-        maxPadding: 0.05
+        maxPadding: 0.05,
+        title: {
+          text: 'Price'
+        }
+      },
+      yAxis: {
+        title: {
+          text: 'Shares'
+        }
       },
       series: [
         {
