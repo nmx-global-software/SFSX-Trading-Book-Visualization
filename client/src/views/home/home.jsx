@@ -15,12 +15,33 @@ import "./home.css";
 const Home = props=>{
   return (
     <div className="main">
-    <div className="columns">
-      <div className="column">
-        <TradingFormContainer />
+    <div className="tile is-ancestor">
+      <div className="tile is-vertical is-8">
+        <div className="tile">
+          <div className="tile is-parent is-vertical">
+            <div className="tile is-child ">
+              <TradingFormContainer />
+            </div>
+          </div>
+          <div className="tile is-parent">
+            <div className="tile is-child">
+              <ColumnChartContainer />
+            </div>
+          </div>
+        </div>
+        <div className="tile is-parent">
+          <article className="tile is-child notification is-danger">
+            <p className="title">Wide tile</p>
+            <p className="subtitle">Aligned with the right tile</p>
+            <div className="content" />
+          </article>
+        </div>
       </div>
-      <div className="column"><ColumnChartContainer /></div>
-      <div className="column" ><HistoryContainer /></div>
+      <div className="tile is-parent">
+        <div className="tile is-child">
+          <HistoryContainer />
+        </div>
+      </div>
     </div>
   </div>
   )
