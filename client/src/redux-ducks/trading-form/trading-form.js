@@ -7,14 +7,14 @@ import { duckifyActionType } from "../../utils/action-utils";
 import { order } from '../../constants/endpoints'
 import { updateTradersData } from '../traders/traders'
 
-const HANDLE_TICKER_CHANGE = duckifyActionType("trading-form", "HANDLE_TICKER_CHANGE");
-const HANDLE_TRADER_CHANGE = duckifyActionType("trading-form", "HANDLE_TRADER_CHANGE");
-const HANDLE_PRICE_CHANGE = duckifyActionType("trading-form", "HANDLE_PRICE_CHANGE");
-const HANDLE_SHARES_CHANGE = duckifyActionType("trading-form", "HANDLE_SHARES_CHANGE");
-const HANDLE_ORDER_TYPE_CHANGE = duckifyActionType("trading-form", "HANDLE_ORDER_TYPE_CHANGE");
-const LOCK_FORM = duckifyActionType("trading-form", "LOCK-FORM");
-const UNLOCK_FORM = duckifyActionType("trading-form", "UNLOCK_FORM");
-const FORM_SUCCESS = duckifyActionType("trading-form", "FORM_SUCCESS");
+export const HANDLE_TICKER_CHANGE = duckifyActionType("trading-form", "HANDLE_TICKER_CHANGE");
+export const HANDLE_TRADER_CHANGE = duckifyActionType("trading-form", "HANDLE_TRADER_CHANGE");
+export const HANDLE_PRICE_CHANGE = duckifyActionType("trading-form", "HANDLE_PRICE_CHANGE");
+export const HANDLE_SHARES_CHANGE = duckifyActionType("trading-form", "HANDLE_SHARES_CHANGE");
+export const HANDLE_ORDER_TYPE_CHANGE = duckifyActionType("trading-form", "HANDLE_ORDER_TYPE_CHANGE");
+export const LOCK_FORM = duckifyActionType("trading-form", "LOCK-FORM");
+export const UNLOCK_FORM = duckifyActionType("trading-form", "UNLOCK_FORM");
+export const FORM_SUCCESS = duckifyActionType("trading-form", "FORM_SUCCESS");
 
 export const handleTickerChange = dispatch => value => {
     dispatch({ type: HANDLE_TICKER_CHANGE, value });
@@ -53,7 +53,7 @@ export const handleTickerChange = dispatch => value => {
       })
   };
 
-  const initState = {
+  export const initState = {
     ticker: "ZGRO",
     trader: "",
     price: "",
