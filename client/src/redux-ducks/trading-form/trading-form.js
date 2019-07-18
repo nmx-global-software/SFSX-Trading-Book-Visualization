@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import { duckifyActionType } from "../../utils/action-utils";
 import { order } from '../../constants/endpoints'
+import { updateTradersData } from '../traders/traders'
 
 const HANDLE_TICKER_CHANGE = duckifyActionType("trading-form", "HANDLE_TICKER_CHANGE");
 const HANDLE_TRADER_CHANGE = duckifyActionType("trading-form", "HANDLE_TRADER_CHANGE");
@@ -42,9 +43,9 @@ export const handleTickerChange = dispatch => value => {
     delete data.isLocked;
     return axios.post(order, data)
       .then(response=> {
-        console.log(response);
         dispatch({ type: UNLOCK_FORM });
         dispatch({type:FORM_SUCCESS})
+        dispatch(updateTradersData(response.data))
       })
       .catch(e=>{
         console.log(e);
