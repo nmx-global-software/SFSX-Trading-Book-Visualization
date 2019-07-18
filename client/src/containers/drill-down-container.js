@@ -15,7 +15,9 @@ const TableWrapper = ({ data }) => (
 
 const mapStateToProps = state => {
   const ticker = state.tradingForm.ticker;
-  const data = state.traders.book && state.traders.book[ticker]["1"].orders;
+  const selectedPrice = state.traders.selectedPrice;
+  const data = selectedPrice && state.traders.book && state.traders.book[ticker][selectedPrice].orders;
+
   return {
     data
   };
