@@ -14,7 +14,6 @@ export const loadTradersData = dispatch => value => {
   return axios
     .get(order)
     .then(response => {
-      console.log(response.data);
       dispatch({ type: LOAD_TRADERS_DATA, value: response.data });
     })
     .catch(e => {
