@@ -12,7 +12,7 @@ const getSeries = input => {
 
   return Object.entries(input).reduce((acc, [price, value]) => {
     const totalShares = value.orders.reduce((sum, val) => sum + val.numberOfShares, 0)
-    acc[value.type].push([price, totalShares])
+    acc[value.type].push([parseFloat(price), totalShares])
     return acc
   }, init)
 }
@@ -22,9 +22,6 @@ const mapStateToProps = state => {
   const ticker = state.tradingForm.ticker
   const input = state.traders.book && state.traders.book[ticker]
   const { buy, sell } = getSeries(input)
-
-  console.log({buy, sell});
-
 
   return {
     chartOptions: {
