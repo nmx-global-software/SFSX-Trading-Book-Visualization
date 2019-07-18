@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 
 import TradingFormContainer from '../../containers/trading-form-container';
 import HistoryContainer from '../../containers/history-container.js'
-import ColumnChart from '../../components/charts/column-chart'
+import ColumnChartContainer from "../../containers/chart-container";
+
 
 import wrapper from '../../components/wrapper'
 
@@ -18,7 +19,7 @@ const Home = props=>{
       <div className="column">
         <TradingFormContainer />
       </div>
-      <div className="column"><ColumnChart /></div>
+      <div className="column"><ColumnChartContainer /></div>
       <div className="column" ><HistoryContainer /></div>
     </div>
   </div>
