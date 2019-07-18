@@ -9,8 +9,8 @@ const resolvers = [
 ];
 const headers = ["Timestamp", "Trader", "Share"];
 
-const TableWrapper = ({ data }) => (
-  <Table resolvers={resolvers} headers={headers} data={data} />
+const TableWrapper = (props) => (
+  <Table resolvers={resolvers} headers={headers} {...props} />
 );
 
 const mapStateToProps = state => {
@@ -19,6 +19,7 @@ const mapStateToProps = state => {
   const data = selectedPrice && state.traders.book && state.traders.book[ticker][selectedPrice].orders;
 
   return {
+    title: `Resting orders: @ ${selectedPrice}`,
     data
   };
 };
