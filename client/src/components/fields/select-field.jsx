@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const SelectField = props => {
   const { label, onChange, value, data, disabled } = props;
@@ -23,6 +24,14 @@ const SelectField = props => {
       </div>
     </div>
   );
+};
+
+SelectField.propTypes = {
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value:PropTypes.string.isRequired,
+  disabled:PropTypes.bool,
+  data:PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default SelectField;
