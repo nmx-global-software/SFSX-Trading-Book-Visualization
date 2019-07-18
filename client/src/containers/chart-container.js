@@ -4,9 +4,24 @@ import { connect } from 'react-redux'
 import { handleChartSelection } from '../redux-ducks/traders/traders'
 import ColumnChart from '../components/charts/column-chart';
 
+const getSeries = input => {
+
+  const init = { buy: [], sell: [] }
+
+  if(!input) return init;
+
+  return Object.entries(input).reduce((acc, [price, value]) => {
+    const totalShares = value.orders.reduce((sum, val) => sum + val.numberOfShares, 0)
+    acc[value.type].push([parseFloat(price), totalShares])
+    return acc
+  }, init)
+}
+
 const mapStateToProps = state => {
 
-
+  const ticker = state.tradingForm.ticker
+  const input = state.traders.book && state.traders.book[ticker]
+  const { buy, sell } = getSeries(input)
 
   return {
     chartOptions: {
@@ -21,23 +36,15 @@ const mapStateToProps = state => {
         maxPadding: 0.05
       },
       series: [{
-        color: 'blue',
-        data: [
-          [10, 100],
-          [11, 90],
-          [12, 101]
-        ]
+        title: "Buy",
+        color: '#66A7C5',
+        data: buy
       },
-
       {
-        color: 'red',
-        data: [
-          [15, 100],
-          [16, 90],
-          [17, 101]
-        ]
-      }
-      ]
+        title: "Sell",
+        color: '#EE3233',
+        data: sell
+      }]
 
     }
   }
