@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const RadioField = props => {
   const { firstLabel, secondLabel, onChange, value, firstValue, secondValue, disabled } = props;
@@ -24,6 +25,17 @@ const RadioField = props => {
       </div>
     </div>
   );
+};
+
+
+RadioField.propTypes = {
+  firstLabel:PropTypes.string.isRequired,
+  secondLabel:PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value:PropTypes.string.isRequired,
+  disabled:PropTypes.bool,
+  firstValue:PropTypes.string.isRequired,
+  secondValue:PropTypes.string.isRequired,
 };
 
 export default RadioField;
