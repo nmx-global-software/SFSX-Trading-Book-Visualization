@@ -12,7 +12,6 @@ const HANDLE_CHART_ON_SELECTION = duckifyActionType("traders", "HANDLE_CHART_ON_
 export const loadTradersData = dispatch => value => {
     return axios.get(order)
       .then(response=> {
-        console.log(response);
         dispatch({ type: LOAD_TRADERS_DATA, value:response.data });
       })
       .catch(e=>{

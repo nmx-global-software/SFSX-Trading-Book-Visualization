@@ -37,6 +37,7 @@ export const handleTickerChange = dispatch => value => {
 
 
   export const handleOrderSubmit = dispatch => data => {
+    
     dispatch({ type: LOCK_FORM });
     delete data.isLocked;
     return axios.post(order, data)
