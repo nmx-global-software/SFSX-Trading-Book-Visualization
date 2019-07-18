@@ -45,7 +45,8 @@ export default function reducer(state = {}, action = {}) {
     case HANDLE_CHART_ON_SELECTION:
         return {
           ...state,
-          selectedPrice:action.value
+          selectedPrice:action.value.price,
+          selectedType: action.value.type
         };
     default:
       return state;

@@ -1,4 +1,4 @@
-export const createColumnChartConfig = ({title, buy, sell, actions }) => {
+export const createColumnChartConfig = ({ title, buy, sell, actions }) => {
   return {
     chartOptions: {
       chart: {
@@ -9,8 +9,8 @@ export const createColumnChartConfig = ({title, buy, sell, actions }) => {
           cursor: "pointer",
           point: {
             events: {
-              click: function() {
-                actions.handleChartSelection(this.category)
+              click: function () {
+                actions.handleChartSelection({ price: this.category, type: this.series.name })
               }
             }
           }
@@ -22,12 +22,12 @@ export const createColumnChartConfig = ({title, buy, sell, actions }) => {
       },
       series: [
         {
-          title: "Buy",
+          name: "Buy",
           color: "#66A7C5",
           data: buy
         },
         {
-          title: "Sell",
+          name: "Sell",
           color: "#EE3233",
           data: sell
         }
