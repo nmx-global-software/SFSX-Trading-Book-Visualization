@@ -38,7 +38,7 @@ export const handleTickerChange = dispatch => value => {
 
 
   export const handleOrderSubmit = dispatch => data => {
-    
+
     dispatch({ type: LOCK_FORM });
     delete data.isLocked;
     return axios.post(order, data)
@@ -102,7 +102,8 @@ export const handleTickerChange = dispatch => value => {
         case FORM_SUCCESS:
         return {
           ...state,
-          ...initState
+          ...initState,
+          ticker: state.ticker
         };
       default:
         return state;
